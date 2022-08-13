@@ -1,5 +1,13 @@
+import Sidebar from '../components/Sidebar'
+
 export default function Home() {
   return (
-    <h1 className="text-center my-5">Home Page</h1>
+    <div className="bg-black h-screen overflow-hidden">
+      <main>
+        <Sidebar />
+        {/* Center */}
+      </main>
+      <div>{/* Player */}</div>
+    </div>
   )
 }
