@@ -3,16 +3,22 @@ import Image from 'next/image'
 
 function Login({ providers }) {
   return (
-    <div>
+    <div className="flex flex-col items-center bg-black min-h-screen w-full justify-center">
       <Image
-        className="w-52 mb-5"
         src="/logo.png"
-        layout="fill"
+        width="208"
+        height="208"
         alt="logo"
       />
       {Object.values(providers).map((provider) => (
         <div key={provider.name}>
-          <button type="button">Login with {provider.name}</button>
+          <button
+            className="bg-[#18D860] text-white mt-5 p-5 rounded-full"
+            type="button"
+            onClick={() => signIn(provider.id, { callbackUrl: '/' })}
+          >
+            Login with {provider.name}
+          </button>
         </div>
       ))}
     </div>

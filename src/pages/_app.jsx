@@ -1,25 +1,31 @@
 import '@/styles/globals.scss'
+import 'tailwindcss/tailwind.css'
+import { SessionProvider } from 'next-auth/react'
+import { RecoilRoot } from 'recoil'
 import { ToastContainer } from 'react-toastify'
 import { appWithTranslation } from 'next-i18next'
 
 import appWithSession from '@/hoc/appWithSession'
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }
+) {
   return (
-    <>
-      <Component {...pageProps} />
-      <ToastContainer
-        position="bottom-left"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
-    </>
+    <SessionProvider session={session}>
+      <RecoilRoot>
+        <Component {...pageProps} />
+        <ToastContainer
+          position="bottom-left"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+      </RecoilRoot>
+    </SessionProvider>
   )
 }
 
